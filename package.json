@@ -9,9 +9,17 @@
     "dist": "npm run dist:js",
     "dist:js": "babel src --out-dir lib",
 
-    "test": "npm run test:browser",
+    "predemo": "rm docs/bundle.js && touch docs/bundle.js",
+    "demo": "npm run demo:js:watch & npm run demo:server",
+    "demo:js:watch": "watchify -t babelify docs/demo.js -o docs/bundle.js",
+    "demo:server": "serve ./docs -p 8080",
+    "postdemo:server": "opener http://localhost:8080/demo.html",
+
+    "test": "npm run test:node && npm run test:browser",
     "test:browser": "karma start --single-run",
-    "test:watch": "karma start",
+    "test:browser:watch": "karma start",
+    "test:node": "mocha --compilers js:babel/register --recursive",
+    "test:node:watch": "npm run test:node -- -w",
 
     "lint": "npm run lint:jscs && npm run lint:eslint",
     "lint:jscs": "cat ./{src,test}/**/*.js | jscs",
@@ -31,6 +39,10 @@
     "browser",
     "nodejs"
   ],
+  "pre-commit": [
+    "list",
+    "test"
+  ],
   "author": "Carlos Villuendas <carlosvillu@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -43,12 +55,13 @@
     "babel-eslint": "~3.1.14",
     "babel-jscs": "^1.0.1",
     "babelify": "^6.1.3",
+    "browserify": "^11.0.0",
     "chai": "^2.3.0",
     "chai-as-promised": "^5.1.0",
     "esdoc": "^0.1.3",
-    "gh-pages": "^0.3.1",
     "eslint": "^0.24.1",
     "eslint-plugin-react": "^2.7.0",
+    "gh-pages": "^0.3.1",
     "jscs": "^1.13.1",
     "karma": "^0.12.31",
     "karma-browserify": "^4.1.2",
@@ -58,6 +71,13 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-spec-reporter": "0.0.19",
     "mocha": "^2.2.4",
-    "sinon": "^1.15.4"
+    "opener": "^1.4.1",
+    "sassify": "^0.9.1",
+    "sinon": "^1.15.4",
+    "watchify": "^3.3.0"
+  },
+  "dependencies": {
+    "eventemitter2": "^0.4.14",
+    "node-polyglot": "^0.4.3"
   }
 }
