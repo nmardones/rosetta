@@ -1,5 +1,5 @@
 import React from 'react';
-import './demo.scss'
+import './index.scss'
 import i18n, {CHANGE_TRANSLATION_EVENT, rosetta} from '../src';
 import polyglot from '../src/adapters/polyglot';
 
