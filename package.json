@@ -77,7 +77,6 @@
     "watchify": "^3.3.0"
   },
   "dependencies": {
-    "eventemitter2": "^0.4.14",
     "node-polyglot": "^0.4.3",
     "react": "^0.13.3"
   }
