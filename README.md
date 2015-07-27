@@ -54,7 +54,7 @@ From now on, Rosetta will use Polyglot to translate your literals anywhere in yo
 
 ### Changing the dictionary
 
-Anytime part of your code changes dictionaries, `I18N` will output a **translations** event, allowing you to react accordingly, in case you need to take an additional action(s) when there’s a change of language in your app.
+Anytime part of your code changes dictionaries, `I18N` will emit a **translations** event, allowing you to react accordingly, in case you need to take an additional action(s) when there’s a change of language in your app.
 
 ### Creating your own adapters 
 
