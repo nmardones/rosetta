@@ -1,7 +1,7 @@
 /* eslint no-unused-expressions:0 */
 import {expect} from 'chai';
 
-import i18n from '../src';
+import i18n, {CHANGE_TRANSLATION_EVENT} from '../src';
 
 describe('I18N', () => {
   it('is a singleton instance', () => {
@@ -18,7 +18,7 @@ describe('I18N', () => {
   describe('when change the translations', () => {
     it('expect a notification for the event \"translations\" with the new dicc', (done) => {
       const newTranslations = {key: 'llave'};
-      i18n.on('translations', (dicc) => {
+      i18n.on(CHANGE_TRANSLATION_EVENT, (dicc) => {
         expect(dicc).to.be.equal(newTranslations);
         done();
       });

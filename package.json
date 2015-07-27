@@ -5,26 +5,21 @@
   "main": "lib/",
   "scripts": {
     "prepublish": "rm -Rf ./lib && npm run dist",
-
     "dist": "npm run dist:js",
     "dist:js": "babel src --out-dir lib",
-
     "predemo": "rm docs/bundle.js && touch docs/bundle.js",
     "demo": "npm run demo:js:watch & npm run demo:server",
     "demo:js:watch": "watchify -t babelify docs/demo.js -o docs/bundle.js",
     "demo:server": "serve ./docs -p 8080",
     "postdemo:server": "opener http://localhost:8080/demo.html",
-
     "test": "npm run test:node && npm run test:browser",
     "test:browser": "karma start --single-run",
     "test:browser:watch": "karma start",
     "test:node": "mocha --compilers js:babel/register --recursive",
     "test:node:watch": "npm run test:node -- -w",
-
     "lint": "npm run lint:jscs && npm run lint:eslint",
     "lint:jscs": "cat ./{src,test}/**/*.js | jscs",
     "lint:eslint": "eslint --ext=\".js\" src/",
-
     "predoc": "esdoc -c .esdoc && echo '*\n!.gitignore' > docs/.gitignore",
     "doc": "gh-pages -d docs",
     "doc:open": "open ./docs/index.html"
@@ -78,6 +73,7 @@
   },
   "dependencies": {
     "eventemitter2": "^0.4.14",
-    "node-polyglot": "^0.4.3"
+    "node-polyglot": "^0.4.3",
+    "react": "^0.13.3"
   }
 }
