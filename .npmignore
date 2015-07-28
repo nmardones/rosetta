@@ -1,0 +1,9 @@
+docs/
+src/
+test/
+.babelrc
+.DS_Store
+.editorconfig
+.jscsrc
+.gitignore
+karma.conf.js

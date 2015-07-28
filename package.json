@@ -1,12 +1,13 @@
 {
   "name": "@schibstedspain/rosetta",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "plugable I18N library for Node and Browser",
   "main": "lib/",
   "scripts": {
     "prepublish": "rimraf ./lib && npm run dist",
     "dist": "npm run dist:js",
     "dist:js": "babel src --out-dir lib",
+
     "predev": "rimraf docs/bundle.js && touch docs/bundle.js",
     "dev": "npm run dev:js:watch & npm run dev:server",
     "dev:js:watch": "watchify -t babelify docs/index.js -o docs/bundle.js",
