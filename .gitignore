@@ -27,3 +27,4 @@ build/Release
 node_modules
 .scss-lint.yml
 lib/
+.DS_Store
