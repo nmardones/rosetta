@@ -16,7 +16,7 @@ The output of this call will depend both on the adapter and on the dictionary th
 ### npm
 
 ```javascript
-$ npm run @schibstedspain/rosetta
+$ npm install @schibstedspain/rosetta
 
 ```
 
