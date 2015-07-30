@@ -39,7 +39,7 @@ Rosetta will also work perfectly with AngularJS or Backbone. All you need to do 
 #### Loading the library and the adapter
 
 ```javascript
-import i18n, {CHANGE_TRANSLATION_EVENT, rosetta} from '@schibstedspain/rosetta';
+import i18n from '@schibstedspain/rosetta';
 import polyglot from '@schibstedspain/rosetta/lib/adapters/polyglot';
 
 i18n.adapter = polyglot;
@@ -56,14 +56,17 @@ From now on, Rosetta will use Polyglot to translate your literals anywhere in yo
 
 Anytime part of your code changes dictionaries, `I18N` will emit a **translations** event, allowing you to react accordingly, in case you need to take an additional action(s) when there’s a change of language in your app.
 
-### Creating your own adapters
+```javascript
+import i18n, {CHANGE_TRANSLATION_EVENT} from '@schibstedspain/rosetta';
 
-An adapter is just a Javascript object with two obligatory attributes:
+i18n.on(CHANGE_TRANSLATION_EVENT, (dicc) => {
+    console.log('This is the new translations dicc:', dicc);
+});
 
-* **translations** will be in charge of managing the necessary logic to load a new dictionary on your I18N library.
-* **translate** is a function that gets, as a first parameter, a string with the key/literal; and, as a second parameter, an object with the values of the variables that you may need to insert.
-
-Check out Polyglot’s [sample adapter](https://github.com/SUI-Components/rosetta/blob/master/src/adapters/polyglot.js).
+i18n.translations = {
+    'NEW': 'translation dictionary'
+};
+```
 
 ### Use with ReactJS
 
@@ -109,3 +112,12 @@ In order to simplify the use of Rosetta in combination with React, a decorator i
 
   React.render( <App/ >, document.getElementById('app'));
 ```
+
+### Creating your own adapters
+
+An adapter is just a Javascript object with two obligatory attributes:
+
+* **translations** will be in charge of managing the necessary logic to load a new dictionary on your I18N library.
+* **translate** is a function that gets, as a first parameter, a string with the key/literal; and, as a second parameter, an object with the values of the variables that you may need to insert.
+
+Check out Polyglot’s [sample adapter](https://github.com/SUI-Components/rosetta/blob/master/src/adapters/polyglot.js).
