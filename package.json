@@ -7,6 +7,7 @@
     "prepublish": "rimraf ./lib && npm run dist",
     "dist": "npm run dist:js",
     "dist:js": "babel src --out-dir lib",
+    "dist:js:watch": "npm run dist:js -- --watch",
 
     "predev": "rimraf docs/bundle.js && touch docs/bundle.js",
     "dev": "npm run dev:js:watch & npm run dev:server",
