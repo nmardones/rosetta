@@ -1,6 +1,6 @@
 {
   "name": "@schibstedspain/rosetta",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "plugable I18N library for Node and Browser",
   "main": "lib/",
   "scripts": {
