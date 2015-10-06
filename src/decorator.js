@@ -1,4 +1,3 @@
-import React from 'react';
 import i18n, {CHANGE_TRANSLATION_EVENT} from './';
 
 export const rosetta = (Target) => {
@@ -9,5 +8,5 @@ export const rosetta = (Target) => {
         this.forceUpdate();
       });
     }
-  }
+  };
 };
