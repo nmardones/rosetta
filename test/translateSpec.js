@@ -1,11 +1,15 @@
 /* eslint no-unused-expressions:0 */
 import {expect} from 'chai';
 
-import i18n, {CHANGE_TRANSLATION_EVENT} from '../src';
+import Rosetta, {CHANGE_TRANSLATION_EVENT, rosetta} from '../src';
 
 describe('I18N', () => {
-  it('is a singleton instance', () => {
-    expect(i18n).to.not.be.undefined;
+  let i18n;
+  beforeEach( () => i18n = new Rosetta());
+  afterEach( () => i18n = null);
+
+  it('is a instancible class', () => {
+    expect(Rosetta).to.not.be.undefined;
   });
 
   describe('with the default adapter', () => {

@@ -1,11 +1,8 @@
 /* eslint no-unused-expressions:0 */
 import {expect} from 'chai';
 
-import i18n from '../../src';
-import polyglot from '../../src/adapters/polyglot';
-
-// Setting here the polyglot adapter
-i18n.adapter = polyglot;
+import Rosetta, {CHANGE_TRANSLATION_EVENT, rosetta} from '../../src';
+import Polyglot from '../../src/adapters/polyglot';
 
 // Borrowed from https://github.com/airbnb/polyglot.js/blob/master/test/main.coffee
 
@@ -32,6 +29,10 @@ const pluralizePhrases = {
 };
 
 describe('I18N with polyglot adapter', () => {
+  let i18n;
+  beforeEach( () => i18n = new Rosetta({adapter: new Polyglot()}));
+  afterEach( () => i18n = null);
+
   describe('translate', () => {
     beforeEach(() => i18n.translations = phrases);
 

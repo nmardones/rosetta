@@ -1,25 +1,27 @@
 import Polyglot from 'node-polyglot';
 
-const polyglot = new Polyglot();
 
-export default {
+export default class PolyglotAdapter {
+  constructor(){
+    this.polyglot = new Polyglot();
+  }
   get instance() {
-    return polyglot;
-  },
+    return this.polyglot;
+  }
 
   set locale(locale) {
-    return polyglot.locale(locale);
-  },
+    return this.polyglot.locale(locale);
+  }
 
   get locale() {
-    return polyglot.locale();
-  },
+    return this.polyglot.locale();
+  }
 
   set translations(translations) {
-    polyglot.extend(translations);
-  },
+    this.polyglot.extend(translations);
+  }
 
   translate(key, values) {
-    return polyglot.t(key, values);
+    return this.polyglot.t(key, values);
   }
-};
+}

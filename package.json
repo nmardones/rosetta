@@ -1,6 +1,6 @@
 {
   "name": "@schibstedspain/rosetta",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "plugable I18N library for Node and Browser",
   "main": "lib/",
   "scripts": {
@@ -64,8 +64,8 @@
     "karma-spec-reporter": "0.0.19",
     "mocha": "2.2.4",
     "opener": "1.4.1",
-    "react": "0.14",
-    "react-dom": "0.14",
+    "react": "0.14.0",
+    "react-dom": "0.14.0",
     "sassify": "0.9.1",
     "serve": "1.4.0",
     "sinon": "1.15.4",
@@ -75,6 +75,6 @@
     "node-polyglot": "0.4.3"
   },
   "peerDependencies": {
-    "react": "0.14"
+    "react": "0.14.0"
   }
 }

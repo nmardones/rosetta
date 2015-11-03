@@ -4,21 +4,21 @@ const warn = (msg = 'You are using a default adapter. Create a new one. ', ...ar
   console && console.warn && console.warn.apply(console, [msg].concat(args));
 };
 
-export default {
+export default class DefaultAdapter {
   get instance() {
     warn();
-  },
+  }
 
   set locale(locale) {
-    warn();
-  },
+    //warn('DefaultAdapter#setLocale', locale);
+  }
 
   set translations(translations) {
-    warn();
-  },
+    //warn('DefaultAdapter#setTranslations', translations);
+  }
 
   translate(key, values) {
     warn(undefined, key, values);
     return key;
   }
-};
+}
