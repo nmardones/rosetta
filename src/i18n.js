@@ -1,5 +1,6 @@
 import {EventEmitter} from 'events';
 import DefaultAdapter from './adapters/default';
+import decorator from './decorator';
 
 export const CHANGE_TRANSLATION_EVENT = 'translations';
 
@@ -29,6 +30,10 @@ export default class Rosetta extends EventEmitter {
 
   t(key, values) {
     return this.translator.translate(key, values);
+  }
+
+  addToContext(Component){
+    return decorator(this)(Component);
   }
 
 }
