@@ -7,3 +7,5 @@ test/
 .jscsrc
 .gitignore
 karma.conf.js
+webpack.config.js
+webpack.doc.config.js
