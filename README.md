@@ -39,10 +39,11 @@ Rosetta will also work perfectly with AngularJS or Backbone. All you need to do 
 #### Loading the library and the adapter
 
 ```javascript
-import i18n from '@schibstedspain/rosetta';
-import polyglot from '@schibstedspain/rosetta/lib/adapters/polyglot';
+import Rosetta from '@schibstedspain/rosetta';
+import Polyglot from '@schibstedspain/rosetta/lib/adapters/polyglot';
 
-i18n.adapter = polyglot;
+const i18n = new Rosetta();
+i18n.adapter = new Polyglot();
 i18n.translations = {
     'HELLO_WORLD': 'Hola mundo!'
 };
@@ -57,8 +58,9 @@ From now on, Rosetta will use Polyglot to translate your literals anywhere in yo
 Anytime part of your code changes dictionaries, `I18N` will emit a **translations** event, allowing you to react accordingly, in case you need to take an additional action(s) when there’s a change of language in your app.
 
 ```javascript
-import i18n, {CHANGE_TRANSLATION_EVENT} from '@schibstedspain/rosetta';
+import Rosetta, {CHANGE_TRANSLATION_EVENT} from '@schibstedspain/rosetta';
 
+const i18n = new Rosetta();
 i18n.on(CHANGE_TRANSLATION_EVENT, (dicc) => {
     console.log('This is the new translations dicc:', dicc);
 });
@@ -76,9 +78,17 @@ In order to simplify the use of Rosetta in combination with React, a decorator i
  // app.js
 
  import React from 'react';
+ import Rosetta from '@schibstedspain/rosetta';
+ import Polyglot from '@schibstedspain/rosetta/lib/adapters/polyglot';
  import {rosetta} from '@schibstedspain/rosetta';
 
- @rosetta //=> This decorator allows us to update all components if there is a change of language
+ const i18n = new Rosetta();
+ i18n.adapter = new Polyglot();
+ i18n.translations = {
+    'HELLO_WORLD': 'Hola mundo!'
+ };
+
+ @rosetta(i18n) //=> This decorator allows us to update all components if there is a change of language
  class App extends React.Component {
     render(){
         <div></div>
@@ -89,8 +99,8 @@ In order to simplify the use of Rosetta in combination with React, a decorator i
 ```javascript
  // index.js
 
- import i18n from '@schibstedspain/rosetta';
- import polyglot from '@schibstedspain/rosetta/lib/adapters/polyglot';
+ import Rosetta from '@schibstedspain/rosetta';
+ import Polyglot from '@schibstedspain/rosetta/lib/adapters/polyglot';
  import App from '../app';
 
  const spanish = {
@@ -107,10 +117,11 @@ In order to simplify the use of Rosetta in combination with React, a decorator i
     'EN': 'English'
   };
 
-  i18n.adapter = polyglot;
-  i18n.translations = english;
+  const i18n = new Rosetta();
+  i18n.adapter = new Polyglot();
+  const I18NApp = i18n.addToContext(App); // => Add rosetta at the context of your app
 
-  React.render( <App/ >, document.getElementById('app'));
+  React.render( <I18NApp/ >, document.getElementById('app'));
 ```
 
 ### Creating your own adapters
