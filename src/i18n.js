@@ -1,30 +1,39 @@
 import {EventEmitter} from 'events';
-import defaultAdapter from './adapters/default';
+import DefaultAdapter from './adapters/default';
+import decorator from './decorator';
 
 export const CHANGE_TRANSLATION_EVENT = 'translations';
 
-// Singleton instance
-export default new class extends EventEmitter {
-  constructor() {
+export default class Rosetta extends EventEmitter {
+  constructor({adapter = new DefaultAdapter()} = {}) {
     super();
-    this.i18n = defaultAdapter;
+    this.translator = adapter;
+    this.translations = {};
   }
 
   set adapter(adapter) {
-    this.i18n = adapter;
+    this.translator = adapter;
   }
 
   get adapter() {
-    return this.i18n;
+    return this.translator;
   }
 
   set translations (dicc) {
-    this.i18n.translations = dicc;
+    this.translator.translations = dicc;
     this.emit(CHANGE_TRANSLATION_EVENT, dicc);
   }
 
-  t(key, values) {
-    return this.i18n.translate(key, values);
+  get locale() {
+    return this.translator.locale;
   }
 
-}();
+  t(key, values) {
+    return this.translator.translate(key, values);
+  }
+
+  addToContext(Component){
+    return decorator(this)(Component);
+  }
+
+}
