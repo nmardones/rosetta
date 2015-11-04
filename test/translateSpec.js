@@ -8,7 +8,7 @@ describe('I18N', () => {
   beforeEach( () => i18n = new Rosetta());
   afterEach( () => i18n = null);
 
-  it('is a instancible class', () => {
+  it('is an instantiable class', () => {
     expect(Rosetta).to.not.be.undefined;
   });
 
