@@ -25,7 +25,7 @@ const nestedPhrases = {
 };
 
 const pluralizePhrases = {
-  'count_name': '%{smartCount} Name |||| %{smartCount} Names'
+  'count_name': '%{smart_count} Name |||| %{smart_count} Names'
 };
 
 describe('I18N with polyglot adapter', () => {
@@ -101,7 +101,7 @@ describe('I18N with polyglot adapter', () => {
       });
     });
 
-    xdescribe('pluralize', () => {
+    describe('pluralize', () => {
       beforeEach(() => {
         i18n.adapter.locale = 'es';
         i18n.translations = pluralizePhrases;
@@ -111,11 +111,9 @@ describe('I18N with polyglot adapter', () => {
         i18n.translations = phrases;
       });
       it('should support pluralization with an integer', () => {
-        expect(i18n.t('count_name', {smartCount: 0})).to.eql('0 Names');
+        expect(i18n.t('count_name', 2)).to.eql('2 Names');
       });
     });
-
-
   });
 });
 
