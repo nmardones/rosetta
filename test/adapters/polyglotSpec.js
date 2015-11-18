@@ -101,7 +101,7 @@ describe('I18N with polyglot adapter', () => {
       });
     });
 
-    describe.only('pluralize', () => {
+    describe('pluralize', () => {
       beforeEach(() => {
         i18n.adapter.locale = 'es';
         i18n.translations = pluralizePhrases;
