@@ -28,6 +28,12 @@ const pluralizePhrases = {
   'count_name': '%{smart_count} Name |||| %{smart_count} Names'
 };
 
+const urlTokens = {
+  'rent': 'alquiler',
+  'house': 'casa',
+  'elevator': 'ascensor'
+};
+
 describe('I18N with polyglot adapter', () => {
   let i18n;
   beforeEach( () => i18n = new Rosetta({adapter: new Polyglot()}));
@@ -114,6 +120,23 @@ describe('I18N with polyglot adapter', () => {
         expect(i18n.t('count_name', 2)).to.eql('2 Names');
       });
     });
+
+    describe('url', () => {
+      const urlPattern = 'rent/house/marbella/elevator';
+      const expectedUrl = 'alquiler/casa/marbella/ascensor';
+
+      beforeEach(() => {
+        i18n.adapter.locale = 'es';
+        i18n.translations = urlTokens;
+      });
+      afterEach(() => {
+        i18n.adapter.locale = null;
+        i18n.translations = phrases;
+      });
+      it('should translate all the tokens in a url', () => {
+        expect(i18n.url(urlPattern)).to.eql(expectedUrl);
+      });
+    })
   });
 });
 

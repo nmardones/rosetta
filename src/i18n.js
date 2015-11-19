@@ -32,6 +32,12 @@ export default class Rosetta extends EventEmitter {
     return this.translator.translate(key, values);
   }
 
+  url(urlPattern) {
+    return urlPattern.split('/').map((token) => {
+      return this.t(token);
+    }).join('/');
+  }
+
   addToContext(Component){
     return decorator.rosetta(this)(Component);
   }
