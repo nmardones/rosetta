@@ -20,8 +20,7 @@
     "lint:eslint": "eslint --ext=\".js\" src/",
     "predoc": "webpack --config webpack.doc.config.js",
     "doc": "npm run doc:build",
-    "doc:build": "gh-pages -d docs",
-    "i18n": "NODE_ENV=i18n npm run dev"
+    "doc:build": "gh-pages -d docs"
   },
   "repository": {
     "type": "git",
