@@ -5,10 +5,6 @@ const warn = (msg = 'You are using a default adapter. Create a new one. ', ...ar
 };
 
 export default class DefaultAdapter {
-  constructor(){
-    this._keys = [];
-  }
-
   get instance() {
     warn();
   }
@@ -21,14 +17,8 @@ export default class DefaultAdapter {
     //warn('DefaultAdapter#setTranslations', translations);
   }
 
-  get dictionary(){
-    warn('Literals dictionary', JSON.stringify(this._keys));
-    return this._keys;
-  }
-
   translate(key, values) {
     warn(undefined, key, values);
-    this._keys.push({ [ key ]: '' });
     return key;
   }
 }
