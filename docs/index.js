@@ -21,10 +21,8 @@ const english = {
 let i18n = new Rosetta();
 let i18nTwo = new Rosetta();
 
-i18n.adapter = new Polyglot();
-i18nTwo.adapter = new Polyglot();
-
-
+// i18n.adapter = new Polyglot();
+// i18nTwo.adapter = new Polyglot();
 
 // Init the app with spanish
 i18n.translations = english;
@@ -95,3 +93,7 @@ class ListTwo extends React.Component {
 
 ReactDom.render(<List />, document.getElementById('list-container'));
 ReactDom.render(<ListTwo />, document.getElementById('list-container-two'));
+
+if(process.env.NODE_ENV === 'i18n'){
+  i18n.adapter.dictionary;
+}
