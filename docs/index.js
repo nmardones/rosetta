@@ -24,8 +24,6 @@ let i18nTwo = new Rosetta();
 i18n.adapter = new Polyglot();
 i18nTwo.adapter = new Polyglot();
 
-
-
 // Init the app with spanish
 i18n.translations = english;
 
