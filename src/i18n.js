@@ -8,7 +8,6 @@ export default class Rosetta extends EventEmitter {
   constructor({adapter = new DefaultAdapter()} = {}) {
     super();
     this.translator = adapter;
-    this.translations = {};
   }
 
   set adapter(adapter) {
@@ -22,6 +21,10 @@ export default class Rosetta extends EventEmitter {
   set translations (dicc) {
     this.translator.translations = dicc;
     this.emit(CHANGE_TRANSLATION_EVENT, dicc);
+  }
+
+  setTranslationsSilent(dicc){
+    this.translator.translations = dicc;
   }
 
   get locale() {
