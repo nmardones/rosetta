@@ -29,5 +29,20 @@ describe('I18N', () => {
 
       i18n.translations = newTranslations;
     });
+
+    it('we can change the translation in a silent mode', (done) => {
+      let silent = true;
+      i18n.on(CHANGE_TRANSLATION_EVENT, (dicc) => {
+        silent = false;
+      });
+
+      i18n.setTranslationsSilent({key: 'llave'});
+
+      setTimeout(() => {
+        expect(silent).to.be.true;
+        done();
+      }, 50)
+
+    });
   });
 });
