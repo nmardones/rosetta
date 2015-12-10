@@ -4,6 +4,7 @@
   "description": "plugable I18N library for Node and Browser",
   "main": "lib/",
   "scripts": {
+    "prepublish": "rm -Rf ./lib && npm run dist",
     "clean:lib": "rm -rf ./lib/*",
     "predist": "npm run clean:lib -s",
     "dist": "npm run dist:scripts",
