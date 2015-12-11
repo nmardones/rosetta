@@ -1,7 +1,7 @@
 import React from 'react';
 import {CHANGE_TRANSLATION_EVENT} from './';
 
-export const rosetta = (i18n) => {
+export const rosetta = (i18n, languages) => {
   return (Target) => {
 
     // Prevent context varaibles
@@ -9,9 +9,14 @@ export const rosetta = (i18n) => {
     class Rosetta extends Target {
 
       static get childContextTypes(){
-        return Object.assign({}, super.childContextTypes, {
+        let ctxt = Object.assign({}, super.childContextTypes, {
           i18n: React.PropTypes.object
         });
+
+        return !languages ? ctxt : Object.assign({}, ctxt, {
+          languages: React.PropTypes.object
+        });
+
       }
 
       constructor(...args) {
@@ -23,7 +28,8 @@ export const rosetta = (i18n) => {
       }
 
       getChildContext() {
-        return Object.assign({}, (super.getChildContext && super.getChildContext()) || {}, {i18n});
+        let ctxt = Object.assign({}, (super.getChildContext && super.getChildContext()) || {}, {i18n});
+        return !languages ? ctxt : Object.assign({}, ctxt, {languages});
       }
     }
 

@@ -41,8 +41,8 @@ export default class Rosetta extends EventEmitter {
     }).join('/');
   }
 
-  addToContext(Component){
-    return decorator.rosetta(this)(Component);
+  addToContext(Component, languages){
+    return decorator.rosetta(this, languages)(Component);
   }
 
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import './index.scss'
 import Rosetta, {CHANGE_TRANSLATION_EVENT, rosetta} from '../src';
 import Polyglot from '../src/adapters/polyglot';
 
@@ -17,6 +16,11 @@ const english = {
   'ES': 'Spanish',
   'EN': 'English'
 };
+
+const languages = {
+  spanish,
+  english
+}
 
 let i18n = new Rosetta();
 let i18nTwo = new Rosetta();
@@ -37,11 +41,16 @@ class Item extends React.Component {
   }
 }
 
-@rosetta(i18n)
+@rosetta(i18n, languages)
 class List extends React.Component {
 
+  constructor(...args){
+    super(...args);
+    this.languages = this.getChildContext().languages;
+  }
+
   changeLanguage(language) {
-    this.i18n.translations = language === 'en' ? english : spanish;
+    this.i18n.translations = language === 'en' ? this.languages.english : this.languages.spanish;
   }
   render() {
     return (
@@ -53,6 +62,7 @@ class List extends React.Component {
               })
             }
           </ul>
+          <button>{this.i18n.t('NO_EXISTE')}</button>
           <button onClick={this.changeLanguage.bind(this, 'es')}>{this.i18n.t('ES')}</button>
           <button onClick={this.changeLanguage.bind(this, 'en')}>{this.i18n.t('EN')}</button>
         </div>
@@ -62,6 +72,7 @@ class List extends React.Component {
 
 Item.contextTypes = {
   i18n: React.PropTypes.object,
+  languages: React.PropTypes.object,
   id: React.PropTypes.number
 };
 

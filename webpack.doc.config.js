@@ -17,10 +17,6 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel',
         exclude: path.join(__dirname, 'node_modules')
-      },
-      {
-        test: /\.scss$/,
-        loader: 'style!css!sass'
       }
     ]
   }
