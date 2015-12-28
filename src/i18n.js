@@ -37,7 +37,7 @@ export default class Rosetta extends EventEmitter {
 
   url(urlPattern) {
     return urlPattern.split('/').map((token) => {
-      return this.t(token);
+      return this.t(token).toLowerCase();
     }).join('/');
   }
 
