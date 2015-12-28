@@ -29,8 +29,8 @@ const pluralizePhrases = {
 };
 
 const urlTokens = {
-  'rent': 'alquiler',
-  'house': 'casa',
+  'rent': 'Alquiler',
+  'house': 'Casa',
   'elevator': 'ascensor'
 };
 
