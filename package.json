@@ -64,8 +64,8 @@
     "karma-webpack": "1.7.0",
     "mocha": "2.2.4",
     "opener": "1.4.1",
-    "react": "0.14.0",
-    "react-dom": "0.14.0",
+    "react": "0.14",
+    "react-dom": "0.14",
     "react-hot-loader": "1.2.7",
     "sinon": "1.15.4",
     "webpack": "1.12.9",
@@ -75,6 +75,6 @@
     "node-polyglot": "0.4.3"
   },
   "peerDependencies": {
-    "react": "0.14.0"
+    "react": "0.14"
   }
 }
