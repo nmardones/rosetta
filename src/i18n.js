@@ -18,6 +18,14 @@ export default class Rosetta extends EventEmitter {
     return this.translator;
   }
 
+  set culture(culture) {
+    this._culture = culture;
+  }
+
+  get culture() {
+    return this._culture;
+  }
+
   set translations (dicc) {
     this.translator.translations = dicc;
     this.emit(CHANGE_TRANSLATION_EVENT, dicc);
