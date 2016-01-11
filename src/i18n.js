@@ -31,7 +31,8 @@ export default class Rosetta extends EventEmitter {
     this.emit(CHANGE_TRANSLATION_EVENT, dicc);
   }
 
-  setTranslationsSilent(dicc){
+  setTranslationsSilent(dicc, culture){
+    this._culture = culture;
     this.translator.translations = dicc;
   }
 

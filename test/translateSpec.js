@@ -36,10 +36,11 @@ describe('I18N', () => {
         silent = false;
       });
 
-      i18n.setTranslationsSilent({key: 'llave'});
+      i18n.setTranslationsSilent({key: 'llave'}, 'es-ES');
 
       setTimeout(() => {
         expect(silent).to.be.true;
+        expect(i18n.culture).to.be.eq('es-ES');
         done();
       }, 50)
 
