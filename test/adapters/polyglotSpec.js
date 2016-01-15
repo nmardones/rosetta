@@ -94,28 +94,6 @@ describe('I18N with polyglot adapter', () => {
       });
     });
 
-    describe('locale', () => {
-      afterEach(() => i18n.adapter.locale = null);
-
-      it('default locale is \"en\"', () => {
-        expect(i18n.adapter.locale).to.eql('en');
-      });
-
-      it('change to es', () => {
-        i18n.adapter.locale = 'es';
-        expect(i18n.adapter.locale).to.eql('es');
-      });
-    });
-
-    describe('culture', () => {
-      afterEach(() => i18n.culture = null);
-
-      it('set culture', () => {
-        i18n.culture = 'en-GB';
-        expect(i18n.culture).to.eql('en-GB');
-      });
-    });
-
     describe('pluralize', () => {
       beforeEach(() => {
         i18n.adapter.locale = 'es';
