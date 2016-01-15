@@ -1,8 +1,5 @@
-/* eslint no-console:0 no-unused-expressions:0 */
-
-const warn = (msg = 'You are using a default adapter. Create a new one. ', ...args) => {
-  console && console.warn && console.warn.apply(console, [msg].concat(args));
-};
+/* eslint no-unused-expressions:0 */
+import {warn} from '../console';
 
 export default class DefaultAdapter {
   get instance() {
