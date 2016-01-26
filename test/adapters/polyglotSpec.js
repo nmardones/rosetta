@@ -126,9 +126,6 @@ describe('I18N with polyglot adapter', () => {
     });
 
     describe('url', () => {
-      const urlPattern = 'rent/house/marbella/elevator';
-      const expectedUrl = 'alquiler/casa/marbella/ascensor';
-
       beforeEach(() => {
         i18n.languages = urlTokens;
         i18n.culture = 'es-ES';
@@ -137,8 +134,23 @@ describe('I18N with polyglot adapter', () => {
         i18n.languages = phrases;
         i18n.culture = null;
       });
-      it('should translate all the tokens in a url', () => {
-        expect(i18n.url(urlPattern)).to.eql(expectedUrl);
+
+      describe('should translate url tokens', () => {
+        const urlPattern = 'rent/house/marbella/elevator';
+        const expectedUrl = 'alquiler/casa/marbella/ascensor';
+
+        it('simple translation', () => {
+          expect(i18n.url(urlPattern)).to.eql(expectedUrl);
+        });
+      });
+
+      describe('should remove uppercase, spaces and accents', () => {
+        const urlPattern = 'rent/house/Málaga Capital/elevator';
+        const expectedUrl = 'alquiler/casa/malaga-capital/ascensor';
+
+        it('dasherized and slugified', () => {
+          expect(i18n.url(urlPattern)).to.eql(expectedUrl);
+        });
       });
     });
   });
