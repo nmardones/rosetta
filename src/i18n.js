@@ -1,6 +1,5 @@
 import {EventEmitter} from 'events';
 import DefaultAdapter from './adapters/default';
-import {warn} from './console';
 import * as decorator from './decorator';
 
 export const CHANGE_TRANSLATION_EVENT = 'translations';
@@ -34,23 +33,6 @@ export default class Rosetta extends EventEmitter {
     this._languages = languages;
   }
 
-  set translations (dicc) {
-    warn('Rosetta#translations DEPRECATED');
-    this.translator.translations = dicc;
-    this.emit(CHANGE_TRANSLATION_EVENT, dicc);
-  }
-
-  setTranslationsSilent(dicc, culture){
-    warn('Rosetta#setTranslationsSilent DEPRECATED');
-    this._culture = culture;
-    this.translator.translations = dicc;
-  }
-
-  get locale() {
-    warn('Rosetta#locale DEPRECATED');
-    return this.translator.locale;
-  }
-
   t(key, values) {
     return this.translator.translate(key, values);
   }
@@ -64,5 +46,4 @@ export default class Rosetta extends EventEmitter {
   addToContext(Component, languages){
     return decorator.rosetta(this, languages)(Component);
   }
-
 }
