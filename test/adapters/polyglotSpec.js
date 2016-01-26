@@ -7,31 +7,39 @@ import Polyglot from '../../src/adapters/polyglot';
 // Borrowed from https://github.com/airbnb/polyglot.js/blob/master/test/main.coffee
 
 const phrases = {
-  'hello': 'Hello',
-  'hi_name_welcome_to_place': 'Hi, %{name}, welcome to %{place}!',
-  'name_your_name_is_name': '%{name}, your name is %{name}!',
-  'empty_string': ''
+  'en-GB': {
+    'hello': 'Hello',
+    'hi_name_welcome_to_place': 'Hi, %{name}, welcome to %{place}!',
+    'name_your_name_is_name': '%{name}, your name is %{name}!',
+    'empty_string': ''
+  }
 };
 
 const nestedPhrases = {
-  'nav': {
-    'presentations': 'Presentations',
-    'hi_user': 'Hi, %{user}.',
-    'cta': {
-      'join_now': 'Join now!'
-    }
-  },
-  'header.sign_in': 'Sign In'
+  'en-GB': {
+    'nav': {
+      'presentations': 'Presentations',
+      'hi_user': 'Hi, %{user}.',
+      'cta': {
+        'join_now': 'Join now!'
+      }
+    },
+    'header.sign_in': 'Sign In'
+  }
 };
 
 const pluralizePhrases = {
-  'count_name': '%{smart_count} Name |||| %{smart_count} Names'
+  'en-GB': {
+    'count_name': '%{smart_count} Name |||| %{smart_count} Names'
+  }
 };
 
 const urlTokens = {
-  'rent': 'Alquiler',
-  'house': 'Casa',
-  'elevator': 'ascensor'
+  'es-ES': {
+    'rent': 'Alquiler',
+    'house': 'Casa',
+    'elevator': 'ascensor'
+  }
 };
 
 describe('I18N with polyglot adapter', () => {
@@ -40,7 +48,10 @@ describe('I18N with polyglot adapter', () => {
   afterEach( () => i18n = null);
 
   describe('translate', () => {
-    beforeEach(() => i18n.translations = phrases);
+    beforeEach(() => {
+      i18n.languages = phrases;
+      i18n.culture = 'en-GB';
+    });
 
     it('should translate a simple string', () => expect(i18n.t('hello')).to.eql('Hello'));
 
@@ -84,8 +95,14 @@ describe('I18N with polyglot adapter', () => {
     });
 
     describe('nested phrase objects', () => {
-      beforeEach(() => i18n.translations = nestedPhrases);
-      afterEach(() => i18n.translations = phrases);
+      beforeEach(() => {
+        i18n.languages = nestedPhrases;
+        i18n.culture = 'en-GB';
+      });
+      afterEach(() => {
+        i18n.languages = phrases;
+        i18n.culture = 'en-GB';
+      });
       it('should translate a simple string', () => {
         expect(i18n.t('nav.presentations')).to.eql('Presentations');
         expect(i18n.t('nav.hi_user', {user: 'Raph'})).to.eql('Hi, Raph.');
@@ -96,12 +113,12 @@ describe('I18N with polyglot adapter', () => {
 
     describe('pluralize', () => {
       beforeEach(() => {
-        i18n.adapter.locale = 'es';
-        i18n.translations = pluralizePhrases;
+        i18n.languages = pluralizePhrases;
+        i18n.culture = 'en-GB';
       });
       afterEach(() => {
-        i18n.adapter.locale = null;
-        i18n.translations = phrases;
+        i18n.languages = phrases;
+        i18n.culture = null;
       });
       it('should support pluralization with an integer', () => {
         expect(i18n.t('count_name', 2)).to.eql('2 Names');
@@ -113,18 +130,16 @@ describe('I18N with polyglot adapter', () => {
       const expectedUrl = 'alquiler/casa/marbella/ascensor';
 
       beforeEach(() => {
-        i18n.adapter.locale = 'es';
-        i18n.translations = urlTokens;
+        i18n.languages = urlTokens;
+        i18n.culture = 'es-ES';
       });
       afterEach(() => {
-        i18n.adapter.locale = null;
-        i18n.translations = phrases;
+        i18n.languages = phrases;
+        i18n.culture = null;
       });
       it('should translate all the tokens in a url', () => {
         expect(i18n.url(urlPattern)).to.eql(expectedUrl);
       });
-    })
+    });
   });
 });
-
-

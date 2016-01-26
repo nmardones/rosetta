@@ -20,33 +20,6 @@ describe('I18N', () => {
     });
   });
 
-  describe('when change the translations', () => {
-    it('expect a notification for the event \"translations\" with the new dicc', (done) => {
-      const newTranslations = {key: 'llave'};
-      i18n.on(CHANGE_TRANSLATION_EVENT, (dicc) => {
-        expect(dicc).to.be.equal(newTranslations);
-        done();
-      });
-
-      i18n.translations = newTranslations;
-    });
-
-    it('we can change the translation in a silent mode', (done) => {
-      let silent = true;
-      i18n.on(CHANGE_TRANSLATION_EVENT, () => {
-        silent = false;
-      });
-
-      i18n.setTranslationsSilent({key: 'llave'}, 'es-ES');
-
-      setTimeout(() => {
-        expect(silent).to.be.true;
-        expect(i18n.culture).to.be.eq('es-ES');
-        done();
-      }, 50);
-    });
-  });
-
   describe('using the languages setting we change the culture', () => {
     let i18nCulture;
     beforeEach( () => {
@@ -89,6 +62,5 @@ describe('I18N', () => {
         expect(i18nCulture.t('literalOne')).to.eql('TranslateOneEnGB');
       });
     });
-
   });
 });
