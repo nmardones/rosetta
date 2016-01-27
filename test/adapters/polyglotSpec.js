@@ -118,7 +118,7 @@ describe('I18N with polyglot adapter', () => {
       });
       afterEach(() => {
         i18n.languages = phrases;
-        i18n.culture = null;
+        i18n.culture = '';
       });
       it('should support pluralization with an integer', () => {
         expect(i18n.t('count_name', 2)).to.eql('2 Names');
@@ -132,7 +132,7 @@ describe('I18N with polyglot adapter', () => {
       });
       afterEach(() => {
         i18n.languages = phrases;
-        i18n.culture = null;
+        i18n.culture = '';
       });
 
       describe('should translate url tokens', () => {
