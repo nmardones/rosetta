@@ -1,7 +1,7 @@
 import {EventEmitter} from 'events';
 import DefaultAdapter from './adapters/default';
 import * as decorator from './decorator';
-import _ from 'underscore.string';
+import slugify from 'underscore.string/slugify';
 
 export const CHANGE_TRANSLATION_EVENT = 'translations';
 
@@ -40,7 +40,7 @@ export default class Rosetta extends EventEmitter {
 
   url(urlPattern) {
     return urlPattern.split('/').map((token) => {
-      return _.slugify(this.t(token));
+      return slugify(this.t(token));
     }).join('/');
   }
 
