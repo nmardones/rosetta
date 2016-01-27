@@ -38,26 +38,25 @@ describe('I18N', () => {
       };
     } );
 
-    afterEach(() => i18nCulture = null);
+    afterEach(() => i18nCulture = '');
 
     describe('locale', () => {
-      afterEach(() => i18nCulture.adapter.locale = null);
 
       it('default locale is \"en\"', () => {
-        expect(i18nCulture.adapter.locale).to.eql('en');
+        expect(i18nCulture.locale).to.eql('en');
       });
 
       it('change to es', () => {
-        i18nCulture.adapter.locale = 'es';
-        expect(i18nCulture.adapter.locale).to.eql('es');
+        i18nCulture.culture = 'es-ES';
+        expect(i18nCulture.locale).to.eql('es');
       });
     });
 
     describe('culture', () => {
-      afterEach(() => i18nCulture.culture = null);
+      beforeEach(() => i18nCulture.culture = 'en-GB');
+      afterEach(() => i18nCulture.culture = '');
 
       it('set culture', () => {
-        i18nCulture.culture = 'en-GB';
         expect(i18nCulture.culture).to.eql('en-GB');
         expect(i18nCulture.t('literalOne')).to.eql('TranslateOneEnGB');
       });
