@@ -23,11 +23,16 @@ export default class Rosetta extends EventEmitter {
 
   set culture(culture) {
     this._culture = culture;
+    this.translator.locale = culture ? culture.split('-')[0] : '';
     this.translator.translations = this._languages[culture];
   }
 
   get culture() {
     return this._culture;
+  }
+
+  get locale() {
+    return this.translator.locale;
   }
 
   set languages(languages) {
