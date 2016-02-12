@@ -1,4 +1,3 @@
-[![Sauce Test Status](https://saucelabs.com/buildstatus/carlosvillu_rosetta)](https://saucelabs.com/u/carlosvillu_rosetta)
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/carlosvillu_rosetta.svg)](https://saucelabs.com/u/carlosvillu_rosetta)
 
 
