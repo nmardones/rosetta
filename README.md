@@ -1,3 +1,6 @@
+[![Sauce Test Status](https://saucelabs.com/buildstatus/carlosvillu_rosetta)](https://saucelabs.com/u/carlosvillu_rosetta)
+
+
 # Rosetta
 
 The goal of Rosetta is to link your own I18N solution to SUI-* components.
