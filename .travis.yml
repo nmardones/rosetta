@@ -1,0 +1,9 @@
+language: node_js
+script: npm run test:ci
+addons:
+  sauce_connect:
+    username: "carlosvillu_rosetta"
+    access_key:
+      secure: "The secure string output by `travis encrypt`"
+node_js:
+  - "4.2"
